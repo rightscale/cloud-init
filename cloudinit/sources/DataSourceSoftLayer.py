@@ -25,7 +25,7 @@ from cloudinit import util
 from cloudinit import url_helper
  
 LOG = logging.getLogger(__name__)
-SOFTLAYER_API_QUERY_URL = 'https://api.service.softlayer.com/rest/v3.1/SoftLayer_Resource_Metadata'
+SOFTLAYER_API_QUERY_URL = 'https://api.service.softlayer.com/rest/v3.1/SoftLayer_Resource_Metadata/'
 
 class DataSourceSoftLayer(sources.DataSource):
     def __init__(self, sys_cfg, distro, paths):
@@ -35,7 +35,7 @@ class DataSourceSoftLayer(sources.DataSource):
         self.userdata_raw = None
 
     def _fetch_metadata_item(self, item):
-        item_url = url_helper.combine_url(SOFTLAYER_API_QUERY_URL, item)
+        item_url = SOFTLAYER_API_QUERY_URL + item
         resp = url_helper.readurl(url=item_url)
         if resp.code == 200:
             return resp.contents
