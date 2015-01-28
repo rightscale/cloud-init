@@ -101,6 +101,9 @@ class DataSourceExtraConfig(sources.DataSource):
         self.metadata = util.mergemanydict([md, DEFAULT_METADATA])
         return True
 
+    def get_public_ssh_keys(self):
+        return [self.metadata['vs_ssh_public_key']]
+
 
 class NoVmwareToolsInstall(Exception):
     pass
