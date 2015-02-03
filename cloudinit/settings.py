@@ -39,6 +39,7 @@ CFG_BUILTIN = {
         'GCE',
         'OpenStack',
         'ExtraConfig',
+        'SoftLayer',
         'Ec2',
         'CloudSigma',
         'CloudStack',
