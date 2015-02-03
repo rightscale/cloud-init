@@ -1536,6 +1536,15 @@ def delete_dir_contents(dirname):
         else:
             del_file(node_fullpath)
 
+def revno():
+    try:
+        cmd = ['bzr', 'revno']
+        (sysout, _stderr) = subp(cmd)
+    except ProcessExecutionError:
+        cmd = ['git', 'rev-parse', '--short', 'HEAD']
+        (sysout, _stderr) = subp(cmd)
+    return sysout.strip()
+
 
 def subp(args, data=None, rcs=None, env=None, capture=True, shell=False,
          logstring=False):
