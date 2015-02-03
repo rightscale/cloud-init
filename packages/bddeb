@@ -110,9 +110,7 @@ def main():
         (sysout, _stderr) = util.subp(cmd)
         version = sysout.strip()
 
-        cmd = ['bzr', 'revno']
-        (sysout, _stderr) = util.subp(cmd)
-        revno = sysout.strip()
+        revno = util.revno()
 
         # This is really only a temporary archive
         # since we will extract it then add in the debian

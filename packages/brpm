@@ -51,7 +51,10 @@ RPM_BUILD_SUBDIRS = ['BUILD', 'RPMS', 'SOURCES', 'SPECS', 'SRPMS']
 def get_log_header(version):
     # Try to find the version in the tags output
     cmd = ['bzr', 'tags']
-    (stdout, _stderr) = util.subp(cmd)
+    try:
+        (stdout, _stderr) = util.subp(cmd)
+    except util.ProcessExecutionError:
+        return None
     a_rev = None
     for t in stdout.splitlines():
         ver, rev = t.split(None)
@@ -98,9 +101,7 @@ def generate_spec_contents(args, tmpl_fn, top_dir, arc_fn):
     (stdout, _stderr) = util.subp(cmd)
     version = stdout.strip()
     
-    cmd = ['bzr', 'revno']
-    (stdout, _stderr) = util.subp(cmd)
-    revno = stdout.strip()
+    revno = util.revno()
 
     # Tmpl params
     subs = {}
