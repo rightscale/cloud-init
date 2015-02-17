@@ -38,6 +38,8 @@ CFG_BUILTIN = {
         'MAAS',
         'GCE',
         'OpenStack',
+        'ExtraConfig',
+        'SoftLayer',
         'Ec2',
         'CloudSigma',
         'CloudStack',

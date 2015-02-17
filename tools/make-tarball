@@ -18,7 +18,7 @@ if ! find_root; then
     exit 1;
 fi
 
-REVNO=$(bzr revno "$ROOT_DIR")
+REVNO=$(bzr revno "$ROOT_DIR" || git rev-parse --short HEAD)
 
 if [ ! -z "$1" ]; then
     ARCHIVE_FN="$1"
@@ -33,7 +33,8 @@ if [ "${UNCOMMITTED:-0}" != "0" ]; then
 fi
 
 bzr export ${export_uncommitted} \
-   --format=tgz --root="cloud-init-$VERSION~bzr$REVNO" \
-    "--revision=${REVNO}" "${ARCHIVE_FN}" "$ROOT_DIR"
+    --format=tgz --root="cloud-init-$VERSION~bzr$REVNO" \
+    "--revision=${REVNO}" "${ARCHIVE_FN}" "$ROOT_DIR" || git archive \
+    --prefix="cloud-init-$VERSION~git$REVNO/" HEAD  | gzip > $ARCHIVE_FN
 
 echo "$ARCHIVE_FN"
