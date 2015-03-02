@@ -13,6 +13,7 @@ Name:           cloud-init
 Version:        ${version}
 Release:        ${release}${subrelease}%{?dist}
 Summary:        Cloud instance init scripts
+Vendor:         RightScale, Inc.
 
 Group:          System Environment/Base
 License:        GPLv3
