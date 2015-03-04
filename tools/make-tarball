@@ -24,11 +24,11 @@ if [ ! -z "$1" ]; then
     ARCHIVE_FN="$1"
 else
     VERSION=$("$ROOT_DIR/tools/read-version")
-    ARCHIVE_FN="$PWD/cloud-init-$VERSION~bzr$REVNO.tar.gz"
+    ARCHIVE_FN="$PWD/cloud-init-$VERSION~rightscale1.tar.gz"
 fi
 
-bzr export --format=tgz --root="cloud-init-$VERSION~bzr$REVNO" \
+bzr export --format=tgz --root="cloud-init-$VERSION~rightscale1" \
     "--revision=${REVNO}" "${ARCHIVE_FN}" "$ROOT_DIR" || git archive \
-    --prefix="cloud-init-$VERSION~bzr$REVNO/" HEAD  | gzip > $ARCHIVE_FN
+    --prefix="cloud-init-$VERSION~rightscale1/" HEAD  | gzip > $ARCHIVE_FN
 
 echo "$ARCHIVE_FN"
