@@ -122,7 +122,7 @@ def generate_spec_contents(args, tmpl_fn, top_dir, arc_fn):
     subs = {}
     subs['version'] = version
     subs['revno'] = revno
-    subs['release'] = "bzr%s" % (revno)
+    subs['release'] = "rightscale%s" % ("1")
     if args.sub_release is not None:
         subs['subrelease'] = "." + str(args.sub_release)
     else:
