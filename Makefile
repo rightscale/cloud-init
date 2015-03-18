@@ -14,10 +14,10 @@ ifeq ($(distro),)
   distro = redhat
 endif
 
-ifeq ($(wildcard $(/bin/systemctl)),)
-  init_sys = systemd
-else
+ifeq ("","$(wildcard /bin/systemctl)")
   init_sys = sysvinit
+else
+  init_sys = systemd
 endif
 
 all: test check_version
