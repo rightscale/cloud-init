@@ -60,7 +60,6 @@ yaml:
 
 rpm:
 	./packages/brpm --distro $(distro) --boot $(init_sys) \
-		--patch packages/redhat/rsyslog-programname.patch  \
 		--patch packages/redhat/udevadm-settle.patch
 
 deb:
