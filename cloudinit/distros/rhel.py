@@ -103,6 +103,7 @@ class Distro(distros.Distro):
         (dist, vers) = util.system_info()['dist'][:2]
         major = (int)(vers.split('.')[0])
         return ((dist.startswith('Red Hat Enterprise Linux') and major >= 7)
+                or (dist.startswith('CentOS Linux') and major >= 7)
                 or (dist.startswith('Fedora') and major >= 18))
 
     def apply_locale(self, locale, out_fn=None):

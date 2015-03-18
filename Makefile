@@ -14,6 +14,12 @@ ifeq ($(distro),)
   distro = redhat
 endif
 
+ifeq ($(wildcard $(/bin/systemctl)),)
+  init_sys = systemd
+else
+  init_sys = sysvinit
+endif
+
 all: test check_version
 
 pep8:
@@ -53,7 +59,9 @@ yaml:
 	@$(CWD)/tools/validate-yaml.py $(YAML_FILES)
 
 rpm:
-	./packages/brpm --distro $(distro)
+	./packages/brpm --distro $(distro) --boot $(init_sys) \
+		--patch packages/redhat/rsyslog-programname.patch  \
+		--patch packages/redhat/udevadm-settle.patch
 
 deb:
 	./packages/bddeb
