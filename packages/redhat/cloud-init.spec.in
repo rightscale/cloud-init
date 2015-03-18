@@ -83,6 +83,11 @@ ssh keys and to let the user run various scripts.
 
 %install
 
+cp -p config/cloud.cfg-centos config/cloud.cfg
+#if $sysvinit
+sed -i -e 's/, systemd-journal//' config/cloud.cfg
+#end if
+
 %{__python} setup.py install -O1 \
             --skip-build --root \$RPM_BUILD_ROOT \
             --init-system=${init_sys}

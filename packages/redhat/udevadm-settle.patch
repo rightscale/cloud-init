@@ -1,0 +1,23 @@
+From d0eb39917e0cde82442f435cf6171e15dafbeb9e Mon Sep 17 00:00:00 2001
+From: Lars Kellogg-Stedman <lars@redhat.com>
+Date: Mon, 23 Jun 2014 13:14:35 -0400
+Subject: [PATCH] Stopped calling ``udevadm settle'' with --quiet since systemd
+ 213 removed it
+
+---
+ cloudinit/sources/DataSourceAltCloud.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/cloudinit/sources/DataSourceAltCloud.py b/cloudinit/sources/DataSourceAltCloud.py
+index 1e913a6..1f3c895 100644
+--- a/cloudinit/sources/DataSourceAltCloud.py
++++ b/cloudinit/sources/DataSourceAltCloud.py
+@@ -42,7 +42,7 @@ CLOUD_INFO_FILE = '/etc/sysconfig/cloud-info'
+ # Shell command lists
+ CMD_DMI_SYSTEM = ['/usr/sbin/dmidecode', '--string', 'system-product-name']
+ CMD_PROBE_FLOPPY = ['/sbin/modprobe', 'floppy']
+-CMD_UDEVADM_SETTLE = ['/sbin/udevadm', 'settle', '--quiet', '--timeout=5']
++CMD_UDEVADM_SETTLE = ['/sbin/udevadm', 'settle', '--timeout=5']
+
+ META_DATA_NOT_SUPPORTED = {
+     'block-device-mapping': {},
