@@ -167,7 +167,7 @@ fi
 #if $systemd
 %{_unitdir}/cloud-*
 #end if
-
+/run/cloud-init
 # Program binaries
 %{_bindir}/cloud-init*
 
