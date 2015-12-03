@@ -100,6 +100,7 @@ cp -p tools/21-cloudinit.conf \
 
 rm -rf \$RPM_BUILD_ROOT%{python_sitelib}/tests
 mkdir -p \$RPM_BUILD_ROOT/var/lib/cloud
+mkdir -p \$RPM_BUILD_ROOT/run/cloud-init
 
 %clean
 rm -rf \$RPM_BUILD_ROOT
@@ -167,7 +168,7 @@ fi
 #if $systemd
 %{_unitdir}/cloud-*
 #end if
-/run/cloud-init
+%dir /run/cloud-init
 # Program binaries
 %{_bindir}/cloud-init*
 
