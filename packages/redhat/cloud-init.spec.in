@@ -102,6 +102,13 @@ rm -rf \$RPM_BUILD_ROOT%{python_sitelib}/tests
 mkdir -p \$RPM_BUILD_ROOT/var/lib/cloud
 mkdir -p \$RPM_BUILD_ROOT/run/cloud-init
 
+%if 0%{?rhel} >= 7
+# /run/cloud-init needs a tmpfiles.d entry
+mkdir -p \$RPM_BUILD_ROOT/run/cloud-init
+mkdir -p \$RPM_BUILD_ROOT/%{_tmpfilesdir}
+cp -p packages/redhat/cloud-init-tmpfiles.conf \$RPM_BUILD_ROOT/%{_tmpfilesdir}/%{name}.conf
+%endif # if >= C7
+
 %clean
 rm -rf \$RPM_BUILD_ROOT
 
@@ -168,9 +175,13 @@ fi
 #if $systemd
 %{_unitdir}/cloud-*
 #end if
-%dir /run/cloud-init
 # Program binaries
 %{_bindir}/cloud-init*
+
+%if 0%{?rhel} >= 7
+%{_tmpfilesdir}/%{name}.conf
+%dir /run/cloud-init
+%endif # if >= C7
 
 # There doesn't seem to be an agreed upon place for these
 # although it appears the standard says /usr/lib but rpmbuild
